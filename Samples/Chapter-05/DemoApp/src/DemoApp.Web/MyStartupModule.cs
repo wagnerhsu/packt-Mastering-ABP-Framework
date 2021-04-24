@@ -18,16 +18,10 @@ namespace DemoApp.Web
                 options.Sender = configuration["AzureSmsService:Sender"];
                 options.ConnStr = configuration["AzureSmsService:ConnStr"];
             });
-            
-Configure<AbpAuditingOptions>(options =>
-{
-    options.IgnoredTypes.Add(typeof(ProductDto));
-});
 
-Configure<MvcOptions>(options =>
-{
-    options.RespectBrowserAcceptHeader = true;
-});
+            Configure<AbpAuditingOptions>(options => { options.IgnoredTypes.Add(typeof(ProductDto)); });
+
+            Configure<MvcOptions>(options => { options.RespectBrowserAcceptHeader = true; });
         }
     }
 }
