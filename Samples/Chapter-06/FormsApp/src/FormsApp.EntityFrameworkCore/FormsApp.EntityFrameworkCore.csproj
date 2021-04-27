@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>FormsApp</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.5" />
+        <PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="4.3.0-rc.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FormsApp.Domain\FormsApp.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
