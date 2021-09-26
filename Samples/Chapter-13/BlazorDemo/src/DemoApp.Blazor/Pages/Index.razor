@@ -1,0 +1,18 @@
+﻿@page "/"
+@inherits DemoAppComponentBase
+<Button Color="Color.Primary" 
+        Clicked="DeleteProduct">Click me!</Button>
+<p>
+    The value: @Value
+</p>
+@code
+{
+    private async Task DeleteProduct()
+    {
+        //TODO: Delete the product
+        Alerts.Success(
+            text: "Successfully deleted the product.", 
+            title: "Deleted!", 
+            dismissible: true);
+    }
+}
