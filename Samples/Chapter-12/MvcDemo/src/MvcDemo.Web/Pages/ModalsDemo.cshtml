@@ -1,0 +1,40 @@
+﻿@page
+@model MvcDemo.Web.Pages.ModalsDemo
+@section scripts {
+    @*<abp-script src="/Pages/ModalWithForm.cshtml.js" />*@
+    <script>
+    
+    var simpleModal = new abp.ModalManager({
+        viewUrl: '/MySimpleModal'
+    });
+    
+    var newMovieModal = new abp.ModalManager({
+        viewUrl: '/ModalWithForm',
+        scriptUrl: '/Pages/ModalWithForm.cshtml.js',
+        modalClass: 'MovieCreation'
+    });
+    
+    newMovieModal.onResult(function (e, data){
+        console.log(data.responseText);
+    });
+    
+    $(function (){
+        $('#Button1').click(function (){
+            simpleModal.open({
+                productId: 42 //get from somewhere...
+            });
+        });
+        
+        $('#Button2').click(function (){
+            newMovieModal.open();
+        });
+    });
+    </script>
+}
+<h1>Modals Demo</h1>
+<abp-button text="Open the simple modal!"
+            button-type="Primary"
+            id="Button1" />
+<abp-button text="Create new movie!"
+            button-type="Primary"
+            id="Button2" />
