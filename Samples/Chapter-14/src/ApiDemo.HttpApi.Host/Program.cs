@@ -21,6 +21,7 @@ namespace ApiDemo
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
                 .WriteTo.Async(c => c.File("Logs/logs.txt"))
+                .WriteTo.Async(c=>c.Seq("http://localhost:5341"))
 #if DEBUG
                 .WriteTo.Async(c => c.Console())
 #endif
