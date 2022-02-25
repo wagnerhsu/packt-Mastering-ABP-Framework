@@ -30,6 +30,7 @@ using Volo.Abp.Identity.Web;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.Web;
+using Volo.Abp.SettingManagement.Web;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.TenantManagement.Web;
 using Volo.Abp.UI.Navigation.Urls;
@@ -42,9 +43,10 @@ namespace ProductManagement.Web
     [DependsOn(
         typeof(ProductManagementHttpApiModule),
         typeof(ProductManagementApplicationModule),
-        typeof(ProductManagementEntityFrameworkCoreDbMigrationsModule),
+        typeof(ProductManagementEntityFrameworkCoreModule),
         typeof(AbpAutofacModule),
         typeof(AbpIdentityWebModule),
+        typeof(AbpSettingManagementWebModule),
         typeof(AbpAccountWebIdentityServerModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
@@ -150,9 +152,15 @@ namespace ProductManagement.Web
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
                 options.Languages.Add(new LanguageInfo("en-GB", "en-GB", "English (UK)"));
                 options.Languages.Add(new LanguageInfo("hu", "hu", "Magyar"));
+                options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
                 options.Languages.Add(new LanguageInfo("fr", "fr", "Français"));
+                options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi", "in"));
+                options.Languages.Add(new LanguageInfo("is", "is", "Icelandic", "is"));
+                options.Languages.Add(new LanguageInfo("it", "it", "Italiano", "it"));
                 options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
+                options.Languages.Add(new LanguageInfo("ro-RO", "ro-RO", "Română"));
                 options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
+                options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak"));
                 options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
                 options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
@@ -179,7 +187,7 @@ namespace ProductManagement.Web
 
         private void ConfigureSwaggerServices(IServiceCollection services)
         {
-            services.AddSwaggerGen(
+            services.AddAbpSwaggerGen(
                 options =>
                 {
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "ProductManagement API", Version = "v1" });
@@ -207,7 +215,7 @@ namespace ProductManagement.Web
             }
 
             app.UseCorrelationId();
-            app.UseVirtualFiles();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseJwtTokenMiddleware();

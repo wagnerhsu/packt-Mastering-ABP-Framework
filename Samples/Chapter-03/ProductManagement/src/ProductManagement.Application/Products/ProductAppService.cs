@@ -1,12 +1,11 @@
-﻿using System;
+﻿using ProductManagement.Categories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
-using ProductManagement.Categories;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
-
 namespace ProductManagement.Products
 {
     public class ProductAppService :
@@ -50,11 +49,13 @@ namespace ProductManagement.Products
             );
         }
 
-        public async Task<ListResultDto<CategoryLookupDto>> GetCategoriesAsync()
+        public async Task<ListResultDto<CategoryLookupDto>>
+               GetCategoriesAsync()
         {
             var categories = await _categoryRepository.GetListAsync();
             return new ListResultDto<CategoryLookupDto>(
-                ObjectMapper.Map<List<Category>, List<CategoryLookupDto>>(categories)
+                ObjectMapper
+                .Map<List<Category>, List<CategoryLookupDto>>(categories)
             );
         }
 

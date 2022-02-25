@@ -3,7 +3,6 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
-
 namespace ProductManagement.Web.Pages.Products
 {
     public class CreateEditProductViewModel
