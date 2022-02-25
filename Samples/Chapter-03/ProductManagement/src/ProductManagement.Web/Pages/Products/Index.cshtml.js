@@ -1,5 +1,6 @@
 ﻿$(function () {
     var l = abp.localization.getResource('ProductManagement');
+
     var editModal = new abp.ModalManager(abp.appPath + 'Products/EditProductModal');
 
     var dataTable = $('#ProductsTable').DataTable(
@@ -74,11 +75,9 @@
     });
 
     var createModal = new abp.ModalManager(abp.appPath + 'Products/CreateProductModal');
-
     createModal.onResult(function () {
         dataTable.ajax.reload();
     });
-
     $('#NewProductButton').click(function (e) {
         e.preventDefault();
         createModal.open();

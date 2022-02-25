@@ -11,7 +11,7 @@ using Volo.Abp.Modularity;
 namespace ProductManagement.EntityFrameworkCore
 {
     [DependsOn(
-        typeof(ProductManagementEntityFrameworkCoreDbMigrationsModule),
+        typeof(ProductManagementEntityFrameworkCoreModule),
         typeof(ProductManagementTestBaseModule),
         typeof(AbpEntityFrameworkCoreSqliteModule)
         )]
@@ -47,11 +47,11 @@ namespace ProductManagement.EntityFrameworkCore
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
 
-            var options = new DbContextOptionsBuilder<ProductManagementMigrationsDbContext>()
+            var options = new DbContextOptionsBuilder<ProductManagementDbContext>()
                 .UseSqlite(connection)
                 .Options;
 
-            using (var context = new ProductManagementMigrationsDbContext(options))
+            using (var context = new ProductManagementDbContext(options))
             {
                 context.GetService<IRelationalDatabaseCreator>().CreateTables();
             }

@@ -1,0 +1,20 @@
+﻿@page "/"
+@inherits DemoAppComponentBase
+<Button Color="Color.Primary" 
+        Clicked="DeleteProduct">Click me!</Button>
+<p>
+    The value: @Value
+</p>
+@code
+{
+    private async Task DeleteProduct()
+    {
+        var confirmed = await Message.Confirm(
+            "Are you sure to delete the product?");
+        if (confirmed)
+        {
+    //TODO: Delete the product
+            await Notify.Success("Successfully deleted the product!");
+        }
+    }
+}

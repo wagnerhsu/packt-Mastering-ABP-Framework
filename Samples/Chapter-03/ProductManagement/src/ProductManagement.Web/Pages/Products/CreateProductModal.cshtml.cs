@@ -14,7 +14,8 @@ namespace ProductManagement.Web.Pages.Products
 
         private readonly IProductAppService _productAppService;
 
-        public CreateProductModalModel(IProductAppService productAppService)
+        public CreateProductModalModel(
+            IProductAppService productAppService)
         {
             _productAppService = productAppService;
         }

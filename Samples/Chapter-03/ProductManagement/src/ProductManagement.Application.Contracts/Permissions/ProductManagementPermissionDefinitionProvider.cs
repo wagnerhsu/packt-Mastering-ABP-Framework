@@ -9,7 +9,6 @@ namespace ProductManagement.Permissions
         public override void Define(IPermissionDefinitionContext context)
         {
             var myGroup = context.AddGroup(ProductManagementPermissions.GroupName);
-
             //Define your own permissions here. Example:
             //myGroup.AddPermission(ProductManagementPermissions.MyPermission1, L("Permission:MyPermission1"));
         }

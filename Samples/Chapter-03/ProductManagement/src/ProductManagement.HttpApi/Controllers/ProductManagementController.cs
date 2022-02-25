@@ -5,7 +5,7 @@ namespace ProductManagement.Controllers
 {
     /* Inherit your controllers from this class.
      */
-    public abstract class ProductManagementController : AbpController
+    public abstract class ProductManagementController : AbpControllerBase
     {
         protected ProductManagementController()
         {

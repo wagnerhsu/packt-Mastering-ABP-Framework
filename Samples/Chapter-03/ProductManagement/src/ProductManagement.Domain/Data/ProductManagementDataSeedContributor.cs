@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
-
 namespace ProductManagement.Data
 {
-    public class ProductManagementDataSeedContributor : IDataSeedContributor, ITransientDependency
+    public class ProductManagementDataSeedContributor :
+        IDataSeedContributor, ITransientDependency
     {
         private readonly IRepository<Category, Guid> _categoryRepository;
         private readonly IRepository<Product, Guid> _productRepository;
@@ -31,7 +31,8 @@ namespace ProductManagement.Data
             var monitors = new Category { Name = "Monitors" };
             var printers = new Category { Name = "Printers" };
 
-            await _categoryRepository.InsertManyAsync(new[] { monitors, printers });
+            await _categoryRepository
+                .InsertManyAsync(new[] { monitors, printers });
 
             var monitor1 = new Product
             {
@@ -54,14 +55,15 @@ namespace ProductManagement.Data
 
             var printer1 = new Product
             {
-                Category = printers,
+                Category = monitors,
                 Name = "Acme Monochrome Laser Printer, Compact All-In One",
                 Price = 199,
                 ReleaseDate = new DateTime(2020, 11, 16),
                 StockState = ProductStockState.NotAvailable
             };
 
-            await _productRepository.InsertManyAsync(new[] { monitor1, monitor2, printer1 });
+            await _productRepository
+                .InsertManyAsync(new[] { monitor1, monitor2, printer1 });
         }
     }
 }
