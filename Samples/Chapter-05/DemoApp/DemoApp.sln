@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29020.237
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32210.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Domain", "src\DemoApp.Domain\DemoApp.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
 EndProject
@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.DbMigrator", "src\D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{14DEB005-7BF1-49F3-BA21-0094CA922A80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsSending", "SmsSending\SmsSending.csproj", "{7F7BB8AB-0EA8-4DB9-9CA8-905425305702}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsSending", "SmsSending\SmsSending.csproj", "{7F7BB8AB-0EA8-4DB9-9CA8-905425305702}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
