@@ -6,6 +6,7 @@
             if (this.checked){
                alert('checked pre-order!'); 
             }
+            $('#CheckTest').trigger('click');
         });
         console.log('initialized the modal...');
     }

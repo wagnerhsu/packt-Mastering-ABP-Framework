@@ -8,6 +8,8 @@ namespace MvcDemo.Web.Pages
     {
         [BindProperty]
         public MovieViewModel Movie { get; set; }
+        [BindProperty]
+        public bool CheckTest { get; set; }
         
         public void OnGet()
         {
