@@ -1,22 +1,25 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 
 namespace AbpConsole;
 
 public class HelloWorldService : ITransientDependency
 {
-    public ILogger<HelloWorldService> Logger { get; set; }
+    private readonly ILogger<HelloWorldService> _logger;
+    private readonly AzureSmsServiceOptions _options;
 
-    public HelloWorldService()
+    public HelloWorldService(IOptions<AzureSmsServiceOptions> options, ILogger<HelloWorldService> logger)
     {
-        Logger = NullLogger<HelloWorldService>.Instance;
+        _logger = logger;
+        _options = options.Value;
     }
 
     public Task SayHelloAsync()
     {
-        Logger.LogInformation("Hello World!");
+        _logger.LogInformation($"Hello World! {_options.Sender}-{_options.ConnectionString}");
         return Task.CompletedTask;
     }
 }

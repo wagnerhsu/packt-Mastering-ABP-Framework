@@ -27,6 +27,7 @@ public class AbpConsoleHostedService : IHostedService
         {
             options.Services.ReplaceConfiguration(_configuration);
             options.Services.AddSingleton(_hostEnvironment);
+            options.Services.Configure<AzureSmsServiceOptions>(_configuration.GetSection("AzureSmsServiceOptions"));
 
             options.UseAutofac();
             options.Services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog());
