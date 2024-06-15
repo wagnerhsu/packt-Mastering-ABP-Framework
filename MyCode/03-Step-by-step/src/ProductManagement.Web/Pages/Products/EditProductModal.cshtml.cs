@@ -12,7 +12,7 @@ public class EditProductModal : ProductManagementPageModel
 {
     [HiddenInput]
     [BindProperty(SupportsGet = true)]
-    public long Id { get; set; }
+    public string Id { get; set; }
 
     [BindProperty]
     public CreateEditProductViewModel Product { get; set; }

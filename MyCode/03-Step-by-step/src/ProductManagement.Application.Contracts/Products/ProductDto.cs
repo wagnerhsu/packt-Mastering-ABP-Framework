@@ -3,9 +3,9 @@ using Volo.Abp.Application.Dtos;
 
 namespace ProductManagement.Products;
 
-public class ProductDto : AuditedEntityDto<long>
+public class ProductDto : AuditedEntityDto<string>
 {
-    public long CategoryId { get; set; }
+    public string CategoryId { get; set; }
     public string CategoryName { get; set; }
     public string Name { get; set; }
     public float Price { get; set; }

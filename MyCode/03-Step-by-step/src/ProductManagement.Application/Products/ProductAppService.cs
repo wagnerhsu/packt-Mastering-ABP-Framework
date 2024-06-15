@@ -11,13 +11,13 @@ namespace ProductManagement.Products;
 
 public class ProductAppService : ProductManagementAppService, IProductAppService
 {
-    private readonly IRepository<Product, long> _productRepository;
-    private readonly IRepository<Category, long> _categoryRepository;
+    private readonly IRepository<Product, string> _productRepository;
+    private readonly IRepository<Category, string> _categoryRepository;
     UniqueIdService _uniqueIdService = new();
 
 
-    public ProductAppService(IRepository<Product, long> productRepository,
-        IRepository<Category, long> categoryRepository)
+    public ProductAppService(IRepository<Product, string> productRepository,
+        IRepository<Category, string> categoryRepository)
     {
         _productRepository = productRepository;
         _categoryRepository = categoryRepository;
@@ -43,7 +43,7 @@ public class ProductAppService : ProductManagementAppService, IProductAppService
 
     public async Task CreateAsync(CreateUpdateProductDto input)
     {
-        var product = new Product(_uniqueIdService.GenerateInt64());
+        var product = new Product(_uniqueIdService.GenerateWithoutPrefix());
         ObjectMapper.Map(input, product);
 
         await _productRepository.InsertAsync(product);
@@ -56,19 +56,19 @@ public class ProductAppService : ProductManagementAppService, IProductAppService
             ObjectMapper.Map<List<Category>, List<CategoryLookupDto>>(categories));
     }
 
-    public async Task<ProductDto> GetAsync(long id)
+    public async Task<ProductDto> GetAsync(string id)
     {
         var product = await _productRepository.GetAsync(id);
         return ObjectMapper.Map<Product, ProductDto>(product);
     }
 
-    public async Task UpdateAsync(long id, CreateUpdateProductDto input)
+    public async Task UpdateAsync(string id, CreateUpdateProductDto input)
     {
         var product = await _productRepository.GetAsync(id);
         ObjectMapper.Map(input, product);
     }
 
-    public async Task DeleteAsync(long id)
+    public async Task DeleteAsync(string id)
     {
         await _productRepository.DeleteAsync(id);
     }

@@ -5,7 +5,7 @@ namespace ProductManagement.Products;
 
 public class CreateUpdateProductDto
 {
-    public long CategoryId { get; set; }
+    public string CategoryId { get; set; }
     [Required]
     [StringLength(ProductConsts.MaxNameLength)]
     public string Name { get; set; }

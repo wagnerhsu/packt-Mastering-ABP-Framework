@@ -11,11 +11,11 @@ namespace ProductManagement.Data;
 
 public class ProductManagementDataSeedContributor : IDataSeedContributor, ITransientDependency
 {
-    private readonly IRepository<Category, long> _categoryRepository;
-    private readonly IRepository<Product, long> _productRepository;
+    private readonly IRepository<Category, string> _categoryRepository;
+    private readonly IRepository<Product, string> _productRepository;
 
-    public ProductManagementDataSeedContributor(IRepository<Category, long> categoryRepository,
-        IRepository<Product, long> productRepository)
+    public ProductManagementDataSeedContributor(IRepository<Category, string> categoryRepository,
+        IRepository<Product, string> productRepository)
     {
         _categoryRepository = categoryRepository;
         _productRepository = productRepository;
@@ -29,11 +29,11 @@ public class ProductManagementDataSeedContributor : IDataSeedContributor, ITrans
         }
 
         UniqueIdService uniqueIdService = new();
-        var monitors = new Category(uniqueIdService.GenerateInt64()) { Name = "Monitors" };
-        var printers = new Category(uniqueIdService.GenerateInt64()) { Name = "Printers" };
+        var monitors = new Category(uniqueIdService.GenerateWithoutPrefix()) { Name = "Monitors" };
+        var printers = new Category(uniqueIdService.GenerateWithoutPrefix()) { Name = "Printers" };
         await _categoryRepository
             .InsertManyAsync(new[] { monitors, printers });
-        var monitor1 = new Product(uniqueIdService.GenerateInt64())
+        var monitor1 = new Product(uniqueIdService.GenerateWithoutPrefix())
         {
             Category = monitors,
             Name = "XP VH240a 23.8-Inch Full HD 1080p IPS LED Monitor",
@@ -42,7 +42,7 @@ public class ProductManagementDataSeedContributor : IDataSeedContributor, ITrans
             StockState = ProductStockState.InStock
         };
 
-        var monitor2 = new Product(uniqueIdService.GenerateInt64())
+        var monitor2 = new Product(uniqueIdService.GenerateWithoutPrefix())
         {
             Category = monitors,
             Name = "Clips 328E1CA 32-Inch Curved Monitor, 4K UHD",
@@ -52,7 +52,7 @@ public class ProductManagementDataSeedContributor : IDataSeedContributor, ITrans
             StockState = ProductStockState.PreOrder
         };
 
-        var printer1 = new Product(uniqueIdService.GenerateInt64())
+        var printer1 = new Product(uniqueIdService.GenerateWithoutPrefix())
         {
             Category = monitors,
             Name = "Acme Monochrome Laser Printer, Compact All-In One",

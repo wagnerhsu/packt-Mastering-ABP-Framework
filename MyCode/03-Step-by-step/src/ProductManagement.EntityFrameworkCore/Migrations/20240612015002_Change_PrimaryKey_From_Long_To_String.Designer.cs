@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace ProductManagement.Migrations
 {
     [DbContext(typeof(ProductManagementDbContext))]
-    [Migration("20240610022817_Add_Product_Category")]
-    partial class Add_Product_Category
+    [Migration("20240612015002_Change_PrimaryKey_From_Long_To_String")]
+    partial class Change_PrimaryKey_From_Long_To_String
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,8 +28,8 @@ namespace ProductManagement.Migrations
 
             modelBuilder.Entity("ProductManagement.Categories.Category", b =>
                 {
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -71,11 +71,12 @@ namespace ProductManagement.Migrations
 
             modelBuilder.Entity("ProductManagement.Products.Product", b =>
                 {
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<long>("CategoryId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()

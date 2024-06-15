@@ -2,9 +2,9 @@
 
 namespace ProductManagement.Categories;
 
-public class Category : AuditedAggregateRoot<long>
+public class Category : AuditedAggregateRoot<string>
 {
-    public Category(long id) : base(id)
+    public Category(string id) : base(id)
     {
     }
 
