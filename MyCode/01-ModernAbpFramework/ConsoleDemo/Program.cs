@@ -16,7 +16,6 @@ try
 {
     using var application = await AbpApplicationFactory.CreateAsync<ConsoleDemoModule>(options =>
     {
-        //var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
         var builder = Host.CreateApplicationBuilder(args);
         options.Services.ReplaceConfiguration(builder.Configuration);
         options.Services.AddSingleton(builder.Environment);
