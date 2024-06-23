@@ -1,25 +1,34 @@
-var builder = WebApplication.CreateBuilder(args);
+using RazorPageDemo;
+using Serilog;
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile(path: "appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile(path: "serilog.json", optional: false, reloadOnChange: true)
+    .Build();
+Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
+try
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Host.UseAutofac();
+    builder.Logging.AddSerilog();
+    await builder.AddApplicationAsync<AppModule>();
+    var app = builder.Build();
+    await app.InitializeApplicationAsync();
+    await app.RunAsync();
+    return 0;
 }
+catch (Exception ex)
+{
+    if (ex is HostAbortedException)
+    {
+        throw;
+    }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
-
-app.Run();
+    Log.Fatal(ex, "Host terminated unexpectedly!");
+    return 1;
+}
+finally
+{
+    Log.CloseAndFlush();
+}
