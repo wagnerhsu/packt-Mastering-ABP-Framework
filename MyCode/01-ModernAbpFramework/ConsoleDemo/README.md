@@ -5,3 +5,7 @@
 ```powershell
 abp add-package Volo.Abp.Core
 ```
+
+## Features
+
+- Support commandline args

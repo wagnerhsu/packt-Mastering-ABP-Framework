@@ -14,7 +14,7 @@ var configuration = new ConfigurationBuilder()
 Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
 try
 {
-    using var application = await AbpApplicationFactory.CreateAsync<ConsoleDemoModule>(options =>
+    using var application = await AbpApplicationFactory.CreateAsync<AppModule>(options =>
     {
         var builder = Host.CreateApplicationBuilder(args);
         options.Services.ReplaceConfiguration(builder.Configuration);
