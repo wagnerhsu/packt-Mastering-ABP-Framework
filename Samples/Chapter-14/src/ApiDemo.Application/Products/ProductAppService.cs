@@ -9,14 +9,14 @@ namespace ApiDemo.Products
 {
     public class ProductAppService : ApiDemoAppService, IProductAppService
     {
-        public Task<ProductDto> GetListAsync()
+        public  Task<ProductDto> GetListAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(new ProductDto() { });
         }
 
         public Task UpdateAsync(Guid id, ProductUpdateDto input)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }
