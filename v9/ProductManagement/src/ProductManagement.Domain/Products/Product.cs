@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ProductManagement.Categories;
 using Volo.Abp.Domain.Entities.Auditing;
 

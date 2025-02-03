@@ -1,0 +1,46 @@
+@page
+@using ProductManagement.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using ProductManagement.Web.Pages.Products.Product
+@using ProductManagement.Localization
+@using ProductManagement.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<ProductManagementResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["Product"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:Product"].Value);
+    PageLayout.Content.MenuItemName = ProductManagementMenus.Product;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Products/Product/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/Products/Product/index.css"/>
+}
+@section content_toolbar
+{
+	@if (await Authorization.IsGrantedAsync(ProductManagementPermissions.Product.Create))
+    {
+        <abp-button id="NewProductButton"
+            text="@L["CreateProduct"].Value"
+            icon="plus"
+            button-type="Primary" />
+    }
+}
+
+<abp-card>
+    <abp-card-body>
+        <abp-row class="mb-3">
+            <a abp-collapse-id="ProductCollapse" class="text-secondary">@L["TableFilter"] </a>
+        </abp-row>
+        <hr />
+        <abp-table striped-rows="true" id="ProductTable" class="nowrap"/>
+    </abp-card-body>
+</abp-card>

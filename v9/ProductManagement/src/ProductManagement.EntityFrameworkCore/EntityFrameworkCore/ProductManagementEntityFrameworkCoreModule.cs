@@ -1,3 +1,5 @@
+using ProductManagement.Products;
+using ProductManagement.Categories;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Uow;
@@ -45,6 +47,8 @@ public class ProductManagementEntityFrameworkCoreModule : AbpModule
                 /* Remove "includeAllEntities: true" to create
                  * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
+            options.AddRepository<Category, CategoryRepository>();
+            options.AddRepository<Product, ProductRepository>();
         });
 
         if (AbpStudioAnalyzeHelper.IsInAnalyzeMode)

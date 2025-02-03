@@ -14,6 +14,8 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using ProductManagement.Categories;
+using ProductManagement.Products;
 
 namespace ProductManagement.EntityFrameworkCore;
 
@@ -56,6 +58,8 @@ public class ProductManagementDbContext :
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
     #endregion
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Product> Products { get; set; }
 
     public ProductManagementDbContext(DbContextOptions<ProductManagementDbContext> options)
         : base(options)
@@ -87,5 +91,25 @@ public class ProductManagementDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
+
+
+        builder.Entity<Category>(b =>
+        {
+            b.ToTable(ProductManagementConsts.DbTablePrefix + "Categories", ProductManagementConsts.DbSchema);
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<Product>(b =>
+        {
+            b.ToTable(ProductManagementConsts.DbTablePrefix + "Products", ProductManagementConsts.DbSchema);
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
     }
 }

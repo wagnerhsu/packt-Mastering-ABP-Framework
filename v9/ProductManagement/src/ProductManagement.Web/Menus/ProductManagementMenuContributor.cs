@@ -20,7 +20,7 @@ public class ProductManagementMenuContributor : IMenuContributor
         }
     }
 
-    private static Task ConfigureMainMenuAsync(MenuConfigurationContext context)
+    private static async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
         var l = context.GetLocalizer<ProductManagementResource>();
 
@@ -57,6 +57,17 @@ public class ProductManagementMenuContributor : IMenuContributor
         //Administration->Settings
         administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 7);
         
-        return Task.CompletedTask;
+        if (await context.IsGrantedAsync(ProductManagementPermissions.Category.Default))
+        {
+            context.Menu.GetAdministration().AddItem(
+                new ApplicationMenuItem(ProductManagementMenus.Category, l["Menu:Category"], "/Categories/Category")
+            );
+        }
+        if (await context.IsGrantedAsync(ProductManagementPermissions.Product.Default))
+        {
+            context.Menu.GetAdministration().AddItem(
+                new ApplicationMenuItem(ProductManagementMenus.Product, l["Menu:Product"], "/Products/Product")
+            );
+        }
     }
 }

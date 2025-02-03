@@ -1,4 +1,4 @@
-﻿# ProductManagement
+# ProductManagement
 
 ## About this solution
 
