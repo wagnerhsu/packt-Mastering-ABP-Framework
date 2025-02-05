@@ -1,16 +1,20 @@
 ﻿using System.Threading.Tasks;
+using Acme.BookStore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Volo.Abp;
 using Volo.Abp.Autofac;
+using Volo.Abp.Http.Client.IdentityModel;
 using Volo.Abp.Modularity;
 
 namespace AbpConsole;
 
 [DependsOn(
-    typeof(AbpAutofacModule)
+    typeof(AbpAutofacModule),
+    typeof(BookStoreHttpApiClientModule),
+    typeof(AbpHttpClientIdentityModelModule)
 )]
 public class AbpConsoleModule : AbpModule
 {
