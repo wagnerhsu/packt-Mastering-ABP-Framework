@@ -7,6 +7,12 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Acme.BookStore</RootNamespace>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>1.0.0</Version>
+		<Authors>Wagner Xu</Authors>
+		<Company>N/A</Company>
+		<Description>Acme Book http client package</Description>
+		<PackageTags>Abp</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
